@@ -1,6 +1,7 @@
 package com.epam.greenhouse.entity;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class PottedFlower extends Flower {
 
@@ -23,11 +24,11 @@ public class PottedFlower extends Flower {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        if (!super.equals(o)) {
-            return false;
-        }
         PottedFlower that = (PottedFlower) o;
-        return bloomAble == that.bloomAble;
+        return getId() == that.getId() &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getPrice(), that.getPrice()) &&
+                bloomAble == that.bloomAble;
     }
 
     @Override
