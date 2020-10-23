@@ -1,19 +1,25 @@
 package com.epam.greenhouse.entity;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
-public class CutFlower extends Flower {
+public class CutFlower extends AbstractFlower {
 
-    private final FlowerType type;
+    private Inflorescence inflorescence;
 
-    public CutFlower(long id, String name, BigDecimal price, FlowerType type) {
-        super(id, name, price);
-        this.type = type;
+    public CutFlower() {
     }
 
-    public FlowerType getType() {
-        return type;
+    public CutFlower(long id, String name, GrowingConditions conditions, BigDecimal price, Inflorescence inflorescence) {
+        super(id, name, conditions, price);
+        this.inflorescence = inflorescence;
+    }
+
+    public Inflorescence getInflorescence() {
+        return inflorescence;
+    }
+
+    public void setInflorescence(Inflorescence inflorescence) {
+        this.inflorescence = inflorescence;
     }
 
     @Override
@@ -24,17 +30,17 @@ public class CutFlower extends Flower {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        if (!super.equals(o)) {
+            return false;
+        }
         CutFlower cutFlower = (CutFlower) o;
-        return getId() == cutFlower.getId() &&
-                Objects.equals(getName(), cutFlower.getName()) &&
-                Objects.equals(getPrice(), cutFlower.getPrice()) &&
-                type == cutFlower.type;
+        return inflorescence == cutFlower.inflorescence;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (inflorescence != null ? inflorescence.hashCode() : 0);
         return result;
     }
 
@@ -43,8 +49,9 @@ public class CutFlower extends Flower {
         return getClass().getSimpleName() + "{" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
+                ", conditions=" + getConditions() +
                 ", price=" + getPrice() +
-                ", type=" + type +
+                ", inflorescence=" + inflorescence +
                 '}';
     }
 }

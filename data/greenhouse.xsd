@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.epam.com/greenhouse"
+	xmlns:gh="http://www.epam.com/greenhouse"
+	elementFormDefault="qualified">
+
+	<element name="greenhouse" type="gh:greenhouse-type"/>
+
+	<complexType name="greenhouse-type">
+		<sequence>
+			<element ref="gh:abstract-flower" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<element name="abstract-flower" type="gh:abstract-flower-type" abstract="true"/>
+
+	<complexType name="abstract-flower-type">	
+		<sequence>
+			<element name="name" type="gh:name-type"/>
+			<element name="growing-conditions" type="gh:growing-conditions-type"/>
+			<element name="price" type="gh:price-type"/>
+		</sequence>
+		<attribute name="id" type="gh:id-type" use="required"/> 
+	</complexType>
+
+	<simpleType name="name-type">
+		<restriction base="string">
+			<pattern value="[a-zA-Z\s]+"/>
+			<whiteSpace value="replace"/>
+			<minLength value="3"/>
+			<maxLength value="128"/>
+		</restriction>
+	</simpleType>
+
+	<complexType name="growing-conditions-type">
+		<sequence>
+			<element name="lighting" type="gh:lighting-type"/>
+			<element name="temperature" type="gh:temperature-type"/>
+			<element name="watering" type="gh:watering-type"/>
+		</sequence>
+	</complexType>
+
+	<simpleType name="lighting-type">
+		<restriction base="string">
+			<enumeration value="SHINE"/>
+			<enumeration value="SHADOW"/>
+			<enumeration value="PENUMBRA"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="temperature-type">
+		<restriction base="integer"/>
+	</simpleType>
+
+	<simpleType name="watering-type">
+		<restriction base="integer">
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="price-type">
+		<restriction base="decimal">
+			<minInclusive value="0"/>
+			<fractionDigits value="2"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="id-type">
+		<restriction base="long">
+			<pattern value="\d{4}"/>
+		</restriction>
+	</simpleType>
+
+	<element name="cut-flower" type="gh:cut-flower-type" substitutionGroup="gh:abstract-flower"/>
+
+	<complexType name="cut-flower-type">	
+		<complexContent>
+			<extension base="gh:abstract-flower-type">
+				<sequence>
+					<element name="inflorescence" type="gh:inflorescence-type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<simpleType name="inflorescence-type">
+		<restriction base="string">
+			<enumeration value="SINGLE"/>
+			<enumeration value="BUSH"/>
+			<enumeration value="COMPLEX"/>
+		</restriction>
+	</simpleType>
+
+	<element name="potted-flower" type="gh:potted-flower-type" substitutionGroup="gh:abstract-flower"/>
+
+	<complexType name="potted-flower-type">	
+		<complexContent>
+			<extension base="gh:abstract-flower-type">
+				<sequence>
+					<element name="bloom-able" type="gh:bloom-able-type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<simpleType name="bloom-able-type">
+		<restriction base="boolean"/>
+	</simpleType>
+
+</schema> 
+
+
+
+
+
+
+

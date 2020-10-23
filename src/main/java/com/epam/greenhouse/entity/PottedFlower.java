@@ -1,19 +1,25 @@
 package com.epam.greenhouse.entity;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
-public class PottedFlower extends Flower {
+public class PottedFlower extends AbstractFlower {
 
-    private final boolean bloomAble;
+    private boolean bloomAble;
 
-    public PottedFlower(long id, String name, BigDecimal price, boolean bloomAble) {
-        super(id, name, price);
+    public PottedFlower() {
+    }
+
+    public PottedFlower(long id, String name, GrowingConditions conditions, BigDecimal price, boolean bloomAble) {
+        super(id, name, conditions, price);
         this.bloomAble = bloomAble;
     }
 
     public boolean isBloomAble() {
         return bloomAble;
+    }
+
+    public void setBloomAble(boolean bloomAble) {
+        this.bloomAble = bloomAble;
     }
 
     @Override
@@ -24,11 +30,11 @@ public class PottedFlower extends Flower {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        if (!super.equals(o)) {
+            return false;
+        }
         PottedFlower that = (PottedFlower) o;
-        return getId() == that.getId() &&
-                Objects.equals(getName(), that.getName()) &&
-                Objects.equals(getPrice(), that.getPrice()) &&
-                bloomAble == that.bloomAble;
+        return bloomAble == that.bloomAble;
     }
 
     @Override
@@ -43,6 +49,7 @@ public class PottedFlower extends Flower {
         return getClass().getSimpleName() + "{" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
+                ", conditions=" + getConditions() +
                 ", price=" + getPrice() +
                 ", bloomAble=" + bloomAble +
                 '}';
