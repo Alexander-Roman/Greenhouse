@@ -27,8 +27,7 @@ public abstract class ParserTest {
     ParserTest() {
     }
 
-    /* package-private for tests */
-    ParserTest(Parser parser) {
+    public ParserTest(Parser parser) {
         this.parser = parser;
     }
 

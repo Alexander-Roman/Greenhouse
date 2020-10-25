@@ -1,7 +1,6 @@
 package com.epam.greenhouse.validator;
 
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;

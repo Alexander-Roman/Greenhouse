@@ -2,7 +2,6 @@ package com.epam.greenhouse.parsing.sax;
 
 import com.epam.greenhouse.entity.*;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.math.BigDecimal;
