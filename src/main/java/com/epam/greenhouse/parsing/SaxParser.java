@@ -13,12 +13,15 @@ import java.util.List;
 public class SaxParser implements Parser {
 
     @Override
-    public List<AbstractFlower> parse(String fileName) throws IOException, SAXException, ParserConfigurationException {
+    public List<AbstractFlower> parse(String fileName) throws IOException, ParseException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser parser = factory.newSAXParser();
-
         GreenhouseHandler handler = new GreenhouseHandler();
-        parser.parse(fileName, handler);
+        try {
+            SAXParser parser = factory.newSAXParser();
+            parser.parse(fileName, handler);
+        } catch (SAXException | ParserConfigurationException e) {
+            throw new ParseException(e);
+        }
         return handler.getFlowers();
     }
 }

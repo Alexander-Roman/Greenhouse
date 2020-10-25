@@ -1,9 +1,23 @@
 package com.epam.greenhouse.entity;
 
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "growing-conditions", propOrder = {
+        "lighting",
+        "temperature",
+        "watering"
+})
 public class GrowingConditions {
 
+    @XmlElement(namespace = "http://www.epam.com/greenhouse", required = true)
+    @XmlSchemaType(name = "string")
     private Lighting lighting;
+
+    @XmlElement(namespace = "http://www.epam.com/greenhouse", required = true)
     private int temperature;
+
+    @XmlElement(namespace = "http://www.epam.com/greenhouse", required = true)
     private int watering;
 
     public GrowingConditions() {

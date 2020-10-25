@@ -1,9 +1,18 @@
 package com.epam.greenhouse.entity;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.math.BigDecimal;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "potted-flower", propOrder = {
+        "bloomAble"
+})
 public class PottedFlower extends AbstractFlower {
 
+    @XmlElement(name = "bloom-able", namespace = "http://www.epam.com/greenhouse")
     private boolean bloomAble;
 
     public PottedFlower() {

@@ -1,9 +1,16 @@
 package com.epam.greenhouse.entity;
 
+import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "cut-flower", propOrder = {
+        "inflorescence"
+})
 public class CutFlower extends AbstractFlower {
 
+    @XmlElement(namespace = "http://www.epam.com/greenhouse", required = true)
+    @XmlSchemaType(name = "string")
     private Inflorescence inflorescence;
 
     public CutFlower() {

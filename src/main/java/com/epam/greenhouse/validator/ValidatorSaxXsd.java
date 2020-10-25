@@ -15,23 +15,27 @@ import java.io.IOException;
 public class ValidatorSaxXsd {
 
     private static final String LANGUAGE = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-    private final String xmlFileName;
     private final String xsdFileName;
-    private final DefaultHandler handler;
 
-    public ValidatorSaxXsd(String xmlFileName, String xsdFileName, DefaultHandler handler) {
-        this.xmlFileName = xmlFileName;
+    public ValidatorSaxXsd(String xsdFileName) {
         this.xsdFileName = xsdFileName;
-        this.handler = handler;
     }
 
-    public void validate() throws SAXException, IOException {
+    public boolean isValid(String xmlFileName) throws IOException {
+        try {
+            validate(xmlFileName);
+        } catch (SAXException e) {
+            return false;
+        }
+        return true;
+    }
+
+    private void validate(String xmlFileName) throws SAXException, IOException {
         SchemaFactory factory = SchemaFactory.newInstance(LANGUAGE);
         File schemaLocation = new File(xsdFileName);
         Schema schema = factory.newSchema(schemaLocation);
         Validator validator = schema.newValidator();
         Source source = new StreamSource(xmlFileName);
-        validator.setErrorHandler(handler);
         validator.validate(source);
     }
 }

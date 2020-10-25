@@ -29,14 +29,24 @@ public class DomParser implements Parser {
     private static final String WATERING = "watering";
 
     @Override
-    public List<AbstractFlower> parse(String fileName) throws IOException, SAXException, ParserConfigurationException {
+    public List<AbstractFlower> parse(String fileName) throws IOException, ParseException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(fileName);
+        Document document;
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            document = builder.parse(fileName);
+        } catch (SAXException | ParserConfigurationException e) {
+            throw new ParseException(e);
+        }
 
+        return buildAllFlowers(document);
+    }
+
+    private List<AbstractFlower> buildAllFlowers(Document document) {
+        List<AbstractFlower> flowers = new ArrayList<AbstractFlower>();
         Element greenhouse = document.getDocumentElement();
         NodeList flowersNodeList = greenhouse.getChildNodes();
-        List<AbstractFlower> flowers = new ArrayList<AbstractFlower>();
+
         for (int i = 0; i < flowersNodeList.getLength(); i++) {
             Node node = flowersNodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {

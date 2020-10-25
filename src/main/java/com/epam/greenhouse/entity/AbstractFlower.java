@@ -1,13 +1,31 @@
 package com.epam.greenhouse.entity;
 
+import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "abstract-flower", propOrder = {
+        "name",
+        "conditions",
+        "price"
+})
+@XmlSeeAlso({
+        CutFlower.class,
+        PottedFlower.class
+})
 public abstract class AbstractFlower {
 
+    @XmlAttribute(name = "id", required = true)
     private long id;
+
+    @XmlElement(namespace = "http://www.epam.com/greenhouse", required = true)
     private String name;
+
+    @XmlElement(name = "growing-conditions", namespace = "http://www.epam.com/greenhouse", required = true)
     private GrowingConditions conditions;
+
+    @XmlElement(namespace = "http://www.epam.com/greenhouse", required = true)
     private BigDecimal price;
 
     public AbstractFlower() {
