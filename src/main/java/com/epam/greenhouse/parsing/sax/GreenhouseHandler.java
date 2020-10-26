@@ -67,16 +67,14 @@ public class GreenhouseHandler extends DefaultHandler {
                 flower.setPrice(new BigDecimal(priceValue));
                 break;
             case INFLORESCENCE:
-                CutFlower cutFlower = (CutFlower) flower;
                 String inflorescenceValue = String.valueOf(ch, start, length);
                 Inflorescence inflorescence = Inflorescence.valueOf(inflorescenceValue);
-                cutFlower.setInflorescence(inflorescence);
+                ((CutFlower) flower).setInflorescence(inflorescence);
                 break;
             case BLOOM_ABLE:
-                PottedFlower pottedFlower = (PottedFlower) flower;
                 String bloomAbleValue = String.valueOf(ch, start, length);
                 boolean bloomAble = Integer.parseInt(bloomAbleValue) > 0;
-                pottedFlower.setBloomAble(bloomAble);
+                ((PottedFlower) flower).setBloomAble(bloomAble);
                 break;
             case GROWING_CONDITIONS:
                 conditions = new GrowingConditions();
