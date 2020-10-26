@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<greenhouse xmlns="http://www.epam.com/greenhouse"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.epam.com/greenhouse GreenhouseTest.xsd">
+	<!--xsi:noNamespaceSchemaLocation="GreenhouseTest.xsd"-->
+	<cut-flower id="1000">
+		<name>Hybrid Tea Rose</name>
+		<growing-conditions>
+			<lighting>SHINE</lighting>
+			<temperature>18</temperature>
+			<watering>2</watering>
+		</growing-conditions>
+		<price>5.50</price>
+		<inflorescence>SINGLE</inflorescence>
+	</cut-flower>
+
+	<cut-flower id="1001">
+		<name>Climbing Rose</name>
+		<growing-conditions>
+			<lighting>PENUMBRA</lighting>
+			<temperature>26</temperature>
+			<watering>4</watering>
+		</growing-conditions>
+		<price>4.85</price>
+		<inflorescence>BUSH</inflorescence>
+	</cut-flower>
+
+	<potted-flower id="1002">
+		<name>Floribunda</name>
+		<growing-conditions>
+			<lighting>SHADOW</lighting>
+			<temperature>20</temperature>
+			<watering>1</watering>
+		</growing-conditions>
+		<price>11.65</price>
+		<bloom-able>0</bloom-able>
+
+
+	<potted-flower id="1003">
+		<name>Grandiflora</name>
+		<growing-conditions>
+			<lighting>PENUMBRA</lighting>
+			<temperature>22</temperature>
+			<watering>2</watering>
+		</growing-conditions>
+		<price>16.00</price>
+		<bloom-able>1</bloom-able>
+	</potted-flower>
+</greenhouse>
