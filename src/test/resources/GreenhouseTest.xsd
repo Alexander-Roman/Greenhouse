@@ -107,11 +107,4 @@
 		<restriction base="boolean"/>
 	</simpleType>
 
-</schema> 
-
-
-
-
-
-
-
+</schema>
